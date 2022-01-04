@@ -4,28 +4,32 @@ const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas' }
   ])
-
   const [newName, setNewName] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
     const nameObject = {
-      name: newName,
+      name: newName
     }
 
+    const names = persons.map(person => person.name)
+
+    names.includes(newName)
+      ? alert(`${newName} is already added to phonebook`)
+      : setPersons(persons.concat(nameObject))
+    
     setNewName('')
-    setPersons(persons.concat(nameObject))
   }
 
+  const checkName = (array, name) => array.includes(name)
+
   const handleNameChange = (event) => {
-    console.log(event.target.value)
     setNewName(event.target.value)
   }
   
   return (
    <div>
       <h2>Phonebook</h2>
-      <div>debug: {newName}</div>
       <form onSubmit={addName}>
         <div>
          name: <input 
