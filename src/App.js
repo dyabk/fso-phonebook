@@ -3,6 +3,7 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/persons'
+import axios from 'axios'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -44,6 +45,10 @@ const App = () => {
 
   const deletePerson = (id) => {
     console.log(`Record ${id} marked for deletion`)
+    const url = `http://localhost:3001/persons/${id}`
+    axios.delete(url).then(() => {
+    setPersons(persons.filter(person => person.id !== id))
+    })
   }
 
   const handleFilterChange = (event) => {
