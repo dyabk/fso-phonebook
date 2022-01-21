@@ -43,11 +43,14 @@ const App = () => {
   }
 
   const deletePerson = (id) => {
-    personService
-      .remove(id)
-      .then(() => {
-        setPersons(persons.filter(person => person.id !== id))
-      })
+    const name = persons.find(person => person.id === id)
+    if (window.confirm(`Delete ${name}?`)) {
+      personService
+        .remove(id)
+        .then(() => {
+          setPersons(persons.filter(person => person.id !== id))
+        })
+    }
   }
 
   const handleFilterChange = (event) => {
