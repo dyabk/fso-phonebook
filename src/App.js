@@ -68,7 +68,12 @@ const App = () => {
         personService
           .update(id, newObject)
           .then(returnedPerson => {
+            console.log('returnedPerson: ', returnedPerson)
             setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+            setSuccessMessage(`Changed ${returnedPerson.name}'s phone number`)
+            setTimeout(() => {
+              setSuccessMessage(null)
+            }, 7000)
           })
     }
   }
