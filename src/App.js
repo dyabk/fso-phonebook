@@ -29,7 +29,8 @@ const App = () => {
     const names = persons.map(person => person.name)
 
     names.includes(newName)
-      ? alert(`${newName} is already added to phonebook`)
+      ? updatePerson(persons.find(person => 
+          person.name === newPerson.name).id, newPerson)
       : personService
           .create(newPerson)
           .then(returnedNumber => {
@@ -49,10 +50,19 @@ const App = () => {
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
         })
-        .catch(error => {
-          alert(`Record ${id} has already been deleted.`)          
-          setPersons(persons.filter(person => person.id !== id))
-        })
+    }
+  }
+
+  const updatePerson = (id, newObject) => {
+    const originalObject = persons.find(x => x.id === id)
+    
+    if (window
+      .confirm(`${originalObject.name} is already added to the phonebook, replace the old number with a new one?`)) {
+        personService
+          .update(id, newObject)
+          .then(returnedPerson => {
+            setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+          })
     }
   }
 
