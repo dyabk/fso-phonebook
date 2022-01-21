@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Person = ({name, number}) => 
+const Person = ({name, number, remove}) => 
     <li>
         {name} {number} 
-        <button onClick={() => console.log('Marked for deletion')}>delete</button>
+        <button onClick={remove}>delete</button>
     </li>
 
 export default Person

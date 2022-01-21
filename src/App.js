@@ -42,6 +42,10 @@ const App = () => {
     
   }
 
+  const deletePerson = (id) => {
+    console.log(`Record ${id} marked for deletion`)
+  }
+
   const handleFilterChange = (event) => {
     setFilter(event.target.value)
   }
@@ -69,7 +73,7 @@ const App = () => {
         adder={addPerson}
       />
       <h3>Numbers</h3>
-        <Persons persons={personsToShow} />
+        <Persons persons={personsToShow} removalMethod={deletePerson}/>
    </div>
   )
 }
