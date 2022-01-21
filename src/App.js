@@ -50,6 +50,10 @@ const App = () => {
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
         })
+        .catch(error => {
+          alert(`Record ${id} has already been deleted.`)          
+          setPersons(persons.filter(person => person.id !== id))
+        })
     }
   }
 
