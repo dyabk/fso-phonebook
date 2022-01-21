@@ -50,7 +50,7 @@ const App = () => {
   }
 
   const deletePerson = (id) => {
-    const name = persons.find(person => person.id === id)
+    const name = persons.find(person => person.id === id).name
     if (window.confirm(`Delete ${name}?`)) {
       personService
         .remove(id)
